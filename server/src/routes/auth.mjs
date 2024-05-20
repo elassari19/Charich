@@ -20,7 +20,7 @@ router.post("/auth/confirmation/:id", async(request, response) => {
 });
 
 router.get("/auth/status", (request, response) => {
-	return request.user ? response.send(request.user) : response.sendStatus(401);
+
 });
 
 export default router;

@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.String,
 		default: "client",
 	},
+	status: {
+		type: mongoose.Schema.Types.String,
+		default: "pending",
+	}
 });
 
 const AccountSchema = new mongoose.Schema({

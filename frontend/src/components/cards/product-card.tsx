@@ -24,7 +24,7 @@ const ProductCard = ({ className, product, list, index }: Props) => {
           <span className='font-bold text-xs text-destructive'>{product.quantity}</span>
         </div>
 
-        <Link href={`/${product.id}`}
+        <Link href={`/product/${product.id}`}
           className={cn('flex justify-center', list&&"w-1/4")}>
           <Image
             src={product.images} priority={index==0} alt={product.name} width={150} height={150}
