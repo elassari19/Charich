@@ -3,6 +3,11 @@ import { User } from "../mongoose/schemas/user.mjs";
 
 const router = Router();
 
+// Create a new user (account)
+router.post("/user", async(request, response) => {
+
+});
+
 router.get("/users", async(request, response) => {
 	try {
 		// const users = await User.find();
