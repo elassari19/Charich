@@ -12,3 +12,5 @@ export { FaInstagram } from "react-icons/fa";
 export { IoLogoYoutube } from "react-icons/io";
 export { FaTwitch } from "react-icons/fa";
 export { FaStar } from "react-icons/fa6";
+export { GoEye } from "react-icons/go";
+export { FaCheck } from "react-icons/fa6";

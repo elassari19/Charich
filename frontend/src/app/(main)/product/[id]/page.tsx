@@ -1,10 +1,7 @@
 import React from 'react'
-import { Typography } from '@/components/ui/typography'
 import { products } from '@/lib/constant'
-import ProductRate from '@/components/atoms/product-rate'
-import { ReuseSelect } from '@/components/ui/select'
-import { Input } from '@/components/ui/input'
 import ProductImage from '@/components/cards/product-image'
+import ProductDetails from '@/components/cards/product-details'
 import toys from '@/../public/toys.png'
 
 interface Props {
@@ -27,56 +24,11 @@ const page = (props: Props) => {
             />
           </div>
           {/* product option */}
-          <div className='col-span-full lg:col-span-4 flex flex-col gap-y-4 p-4'>
-            <Typography variant='h6' className='font-semibold'>{products.name}</Typography>
-            <div className='flex items-center gap-6'>
-              <ProductRate ratings={products.ratings} />
-              <Typography variant='span' color='primary' className='font-semibold'>{products.reviews} feedbacks</Typography>
-              <Typography variant='span' color="gray">{products.orders} orders</Typography>
-            </div>
-            <div className='grid grid-cols-12 gap-y-3'>
-              <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>Condition:</Typography>
-              <div className='col-span-full md:col-span-8'>
-                <Typography variant='p' className='font-semibold'>{products.condition}</Typography>
-                <Typography variant='span' color="gray">
-                  Example of the sellers exlanation, example of the sellers explanation
-                </Typography>
-              </div>
-            </div>
-            {
-              [
-                { values: products.color, label: 'Color' },
-                { values: products.size, label: 'Size'},
-                // { quantity: products.quantity, label: 'Quantity'}
-              ].map((item) => (
-                <div key={item.label} className='grid grid-cols-12 gap-y-3'>
-                  <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>{item.label}:</Typography>
-                  <div className='col-span-full md:col-span-8'>
-                    <ReuseSelect
-                      defaultValue={`Select ${item.label}`}
-                      selectItems={item.values}
-                    />
-                  </div>
-                </div>
-              ))
-            }
-            <div className='grid grid-cols-12 gap-y-3'>
-              <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>Quantity:</Typography>
-              <div className='col-span-full md:col-span-8 flex gap-2 items-center'>
-                <Input defaultValue={1} className='w-16 text-center' />
-                <Typography variant='span' color='gray'>
-                  {products.quantity} availabel
-                </Typography>
-              </div>
-            </div>
-            <div className='w-full flex justify-center items-center gap-2'>
-              <Typography variant='p' color='gray'>Buy it now:</Typography>
-              <Typography variant='h5' className='font-semibold'>US $ {products.price}</Typography>
-            </div>
-          </div>
+          <ProductDetails product={products} />
 
           {/* summary & checkout */}
-          <div className='col-span-2 border'></div>
+          <div className='col-span-2'>
+          </div>
         </section>
 
         {/* product details */}

@@ -2,9 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import storage from "./storage";
 import cartSlice from "./cartSlice";
+import watchlist from "./watchlist";
 
 const rootReducer = combineReducers({ 
   cart: cartSlice,
+  list: watchlist
 })
 
 const persistConfig = {

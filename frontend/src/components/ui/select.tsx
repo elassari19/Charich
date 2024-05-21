@@ -6,6 +6,7 @@ import { Check, ChevronDown, ChevronUp } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import ReduxContext from "../redux-context"
+import { actions } from "../../lib/actions"
 
 const Select = SelectPrimitive.Root
 
@@ -148,27 +149,42 @@ const SelectSeparator = React.forwardRef<
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 
 interface SelectProps {
-  defaultValue: string
+  defaultValue?: string
   selectItems: string[]
+  actionType: 'color' | 'size'
+  product: any
 }
 
-const ReuseSelect = (props: SelectProps) => (
-  <ReduxContext sliceTarget="product.options">
-    {(store, dispatch) => (
-      <Select>
-        <SelectTrigger>{props.defaultValue}</SelectTrigger>
-          <SelectContent>
-          <SelectGroup>
-            <SelectLabel>{props.defaultValue}</SelectLabel>
-            {props.selectItems.map((item, index) => (
-              <SelectItem value={item.toLocaleLowerCase()} key={index}>{item}</SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    )}
-  </ReduxContext>
-)
+const ReuseSelect = ({ product, ...props}: SelectProps) => {
+  const payload = props.actionType === 'color' ? { color: '' } : { size: '' }
+  return (
+    <ReduxContext>
+      {(store, dispatch) => {
+        const { color, size } = store.cart.items.find((item: any) => item.id === product.id)
+        return (
+        <Select
+          onValueChange={
+            (e)=>dispatch(actions(props.actionType,
+              props.actionType === 'color' 
+              ? { id: product.id, color: e }
+              : { id: product.id, size: e }
+            ))
+          }
+        >
+          <SelectTrigger>
+            {props.actionType == 'color' ? color || props.defaultValue : size 
+            || props.defaultValue}
+          </SelectTrigger>
+            <SelectContent>
+              {props.selectItems.map((item, index) => (
+                <SelectItem value={item.toLocaleLowerCase()} key={index}>{item}</SelectItem>
+              ))}
+          </SelectContent>
+        </Select>
+      )}}
+    </ReduxContext>
+  )
+}
 
 export {
   Select,
