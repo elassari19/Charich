@@ -34,7 +34,7 @@ const FormikField = React.forwardRef<HTMLInputElement, InputProps>(
   ({ children, className, variant, preIcon, sufIcon, name, ...props }, ref) => {
 
     return (
-      <>
+      <div className="h-12 mb-2">
         {/* input section */}
         <div
           className={cn(InputVariants({ variant, className }))}
@@ -47,13 +47,15 @@ const FormikField = React.forwardRef<HTMLInputElement, InputProps>(
             placeholder={props.placeholder}
             {...props}
             ref={ref}
-            className="flex-1 h-8 w-full bg-inherit px-3 py-2 text-sm placeholder:text-slate-500 outline-none"
+            className="flex-1 h-8 w-full bg-inherit px-3 py-2 placeholder:text-slate-500 outline-none"
           />
           {children}
           {sufIcon}
         </div>
-        <ErrorMessage name={name} className="text-xs text-red-500 h-4 pl-4" />
-      </>
+        <div className=" text-red-500 h-4 pl-4">
+        <ErrorMessage name={name} />
+        </div>
+      </div>
     )
   }
 )
