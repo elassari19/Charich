@@ -1,10 +1,15 @@
-import passport from "passport";
 import { Router } from "express";
+import cookie from "cookie";
 
 const router = Router();
 
 router.post("/auth/login", async (request, response) => {
-
+  const { email, password, cookies } = request.body;
+  console.log("/auth/login", email, password, cookies)
+  if (!email || !password) {
+    return response.status(400).json({ message: "Invalid request" });
+  }
+  response.status(200).json({ message: "Login successful" });
 });
 
 router.post("/auth/logout", (request, response) => {

@@ -9,7 +9,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <footer className='grid grid-cols-12 border border-secondary'>
+    <footer className='grid grid-cols-12'>
       <div className="col-span-full mx-4 md:mx-0 md:col-span-10 md:col-start-2 grid grid-cols-4 gap-y-8 py-4">
       {
         footerMenu.map((footer, index)=>(

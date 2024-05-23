@@ -2,13 +2,17 @@ import express from "express";
 import routes from "./routes/index.mjs";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-// import passport from "passport";
-// import MongoStore from "connect-mongo";
-// import mongoose from "mongoose";
-// import "./strategies/local-strategy.mjs";
+import cors from "cors";
+import dotenv from "dotenv";
 
 export function createApp() {
+  dotenv.config();
+
+	// mongoDB();
+
 	const app = express();
+
+	app.use(cors());
 	app.use(express.json());
 	app.use(cookieParser(process.env.JWT_SECRET));
 	app.use(
@@ -24,9 +28,6 @@ export function createApp() {
 			// }),
 		})
 	);
-
-	// app.use(passport.initialize());
-	// app.use(passport.session());
 
 	app.use('/api/v1', routes);
 
