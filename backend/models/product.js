@@ -19,16 +19,24 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     colors: {
-        type: [String], // Array of strings for multiple images
+        type: [String], // Array of strings for multiple colors
         required: false
     },
     sizes: {
-        type: [String], // Array of strings for multiple images
+        type: [String], // Array of strings for multiple sizes
         required: false
     },
     description: {
         type: String,
         default: null
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    subcategory: {
+        type: String,
+        required: true
     }
 });
 
