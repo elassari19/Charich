@@ -1,4 +1,5 @@
 const express = require('express');
+const authcontroller = require('../controllers/authcontroller')
 
 const router = express.Router();
 
@@ -11,20 +12,14 @@ router.post("/auth/login", async (request, response) => {
   response.status(200).json({ message: "Login successful" });
 });
 
-router.post("/auth/logout", (request, response) => {
+router.post("/auth/logout", authcontroller.logout_post);
 
-});
 
-router.post("/auth/forgetpassword", async (request, response) => {
 
-});
+router.post("/auth/forgetpassword", authcontroller.forgetpassword_post);
 
-router.post("/auth/confirmation/:id", async(request, response) => {
+router.post("/auth/confirmation/:id", authcontroller.confirmation_post);
 
-});
-
-router.get("/auth/status", (request, response) => {
-
-});
+router.get("/auth/status", authcontroller.status.get);
 
 module.exports = router;
