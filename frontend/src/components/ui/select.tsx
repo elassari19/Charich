@@ -160,19 +160,19 @@ const ReuseSelect = ({ product, ...props}: SelectProps) => {
   return (
     <ReduxContext>
       {(store, dispatch) => {
-        const { color, size } = store.cart.items.find((item: any) => item.id === product.id)
+        const cartItmes = store.cart.items.find((item: any) => item.id === product.id)
         return (
         <Select
           onValueChange={
             (e)=>dispatch(actions(props.actionType,
               props.actionType === 'color' 
-              ? { id: product.id, color: e }
-              : { id: product.id, size: e }
+              ? { ...product, color: e }
+              : { ...product, size: e }
             ))
           }
         >
           <SelectTrigger>
-            {props.actionType == 'color' ? color || props.defaultValue : size 
+            {props.actionType == 'color' ? cartItmes?.color || props.defaultValue : cartItmes?.size 
             || props.defaultValue}
           </SelectTrigger>
             <SelectContent>

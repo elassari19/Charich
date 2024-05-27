@@ -9,7 +9,8 @@ export const watchlist = createSlice({
   },
   reducers: {
     toggleWatchList: (state, action) => {
-      const index = state.items.indexOf(action.payload);
+      console.log("action", action.payload)
+      const index = state.items.findIndex((item:any) => item.id === action.payload.id);
       if (index === -1) {
         state.items.push(action.payload);
       } else {
