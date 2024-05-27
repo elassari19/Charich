@@ -13,15 +13,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="p-4">
-        <div className="flex justify-center">
-          <Logo />
-        </div>
-        {children}
-        <hr className="my-2" />
-        <Footer />
-      </body>
-    </html>
+    <div className="p-4">
+      <div className="flex justify-center">
+        <Logo />
+      </div>
+      {children}
+      <hr className="my-2" />
+      <Footer />
+    </div>
   )
 }

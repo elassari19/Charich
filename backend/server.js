@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1", routes.userRouter);
+app.use("/api/v1", routes.paymentRouter);
 
 app.get('/api/v1/', (req, res) => {
     res.send('Welcome to the Charich API');

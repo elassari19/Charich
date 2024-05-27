@@ -24,7 +24,7 @@ function CartActions({ actionType, product, children, className }: Props) {
   return (
     <div
       onClick={() => dispatch(actions(actionType, product))}
-      className={cn("", className)}
+      className={cn("cursor-pointer", className)}
     >
       {children}
     </div>

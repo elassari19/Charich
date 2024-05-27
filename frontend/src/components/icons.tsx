@@ -16,3 +16,6 @@ export { GoEye } from "react-icons/go";
 export { FaCheck } from "react-icons/fa6";
 export { FaGoogle } from "react-icons/fa";
 export { FaFacebookF } from "react-icons/fa";
+export { RiDeleteBinLine } from "react-icons/ri";
+export { IoMdHeart } from "react-icons/io";
+export { IoMdLock } from "react-icons/io";
