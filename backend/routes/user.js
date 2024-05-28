@@ -1,29 +1,22 @@
 const express = require('express');
 const {
-	findUserByEmail
-} = require("../controllers/user");
+	findUserByEmail,
+	findUserByID,
+	createUser,
+	updateUser,
+	deleteUser
+} = require("../controllers/user.controller");
 
-const router = express.Router();
+const userRouter = express.Router();
 
-// Create a new user (account)
-router.post("/user", async(request, response) => {
+userRouter.post("/", createUser);
 
-});
+userRouter.get("/", findUserByEmail);
 
-// Find user by email
-router.get("/user", findUserByEmail);
+userRouter.get("/:id", findUserByID);
 
-router.get("/user/:id", async(request, response) => {
-	const { id } = request.params;
-	return response.status(200).json({ message: "User found", id });
-});
+userRouter.patch("/:id", updateUser);
 
-router.patch("/user/:id", async(request, response) => {
+userRouter.delete("/:id", deleteUser);
 
-});
-
-router.delete("/user/:id", async(request, response) => {
-
-});
-
-module.exports = router;
+module.exports = userRouter;
