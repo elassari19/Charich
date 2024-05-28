@@ -24,4 +24,4 @@ productRouter.post('/', upload.array('images', 5), productController.addProduct)
 productRouter.put('/:id', upload.array('images', 5), productController.updateProduct);
 productRouter.delete('/:id', productController.deleteProduct);
 
-module.exports = { productRouter };
+module.exports = productRouter;

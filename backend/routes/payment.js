@@ -1,9 +1,9 @@
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_API_KEY);
 
-const router = express.Router();
+const paymentRouter = express.Router();
 
-router.post('/payment', async (req, res) => {
+paymentRouter.post('/payment', async (req, res) => {
 
   const line_items = req.body.map((item) => ({
     quantity: item.qty,
@@ -39,4 +39,4 @@ router.post('/payment', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = paymentRouter;
