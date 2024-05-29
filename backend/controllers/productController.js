@@ -1,19 +1,16 @@
+const { uploadImages } = require('../libs/cloudinary');
 const Product = require('../models/product');
 
 // Add a new product
 const addProduct = async (req, res) => {
     try {
-        const { name, price, quantity, colors, sizes, description } = req.body;
-        const imagePath = req.files.map(file => file.path); // Save the image paths
+        const { images, ...rest } = req.body;
+
+        const productImages = await uploadImages(images.map((img) => img), `charich/${rest.name}`);
 
         const newProduct = new Product({
-            name,
-            price,
-            quantity,
-            colors,
-            sizes,
-            description,
-            image: imagePath,
+            ...rest,
+            image: productImages,
         });
 
         const savedProduct = await newProduct.save();
@@ -28,11 +25,7 @@ const addProduct = async (req, res) => {
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        if (products.length > 0) {
-            res.json(products);
-        } else {
-            res.status(404).json({ error: 'No products found' });
-        }
+        return res.json(products);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -42,7 +35,7 @@ const getProducts = async (req, res) => {
 // Get a product by custom ID
 const getProductById = async (req, res) => {
     try {
-        const product = await Product.findOne({ id: req.params.id });
+        const product = await Product.findOne({ _id: req.params.id });
         if (product) {
             res.json(product);
         } else {
@@ -57,14 +50,9 @@ const getProductById = async (req, res) => {
 // Update a product
 const updateProduct = async (req, res) => {
     try {
-        const product = await Product.findOne({ id: req.params.id });
+        const product = await Product.findOne({ _id: req.params.id });
         if (!product) {
             return res.status(404).json({ error: 'Product not found' });
-        }
-
-        // Handle file upload if new images are provided
-        if (req.files && req.files.length > 0) {
-            product.image = req.files.map(file => file.path);
         }
 
         // Update other fields based on the request body
@@ -81,7 +69,7 @@ const updateProduct = async (req, res) => {
 // Delete a product
 const deleteProduct = async (req, res) => {
     try {
-        const product = await Product.findOne({ id: req.params.id });
+        const product = await Product.findOne({ _id: req.params.id });
         if (product) {
             await product.deleteOne();
             res.json({ message: 'Product deleted successfully', data: product });

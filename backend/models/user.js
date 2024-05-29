@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	role: {
 		type: mongoose.Schema.Types.String,
-		default: "client",
+		default: "user",
 	},
 	status: {
 		type: mongoose.Schema.Types.String,

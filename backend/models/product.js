@@ -14,10 +14,12 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
-        type: [String], // Array of strings for multiple images
-        required: true
-    },
+    image: [
+        { 
+            secure_url: { type: String },
+            public_id: { type: String }
+        }
+    ],
     colors: {
         type: [String], // Array of strings for multiple colors
         required: false
