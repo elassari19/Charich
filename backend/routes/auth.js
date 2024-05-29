@@ -1,30 +1,19 @@
 const express = require('express');
+const {
+  loginController,
+  logoutController,
+  forgetPasswordController,
+  confirmEmailController
+} = require('../controllers/auth.controller');
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.post("/auth/login", async (request, response) => {
-  const { email, password, cookies } = request.body;
-  console.log("/auth/login", email, password, cookies)
-  if (!email || !password) {
-    return response.status(400).json({ message: "Invalid request" });
-  }
-  response.status(200).json({ message: "Login successful" });
-});
+authRouter.get("/login", loginController);
 
-router.post("/auth/logout", (request, response) => {
+authRouter.get("/logout", logoutController);
 
-});
+authRouter.get("/forgetpassword", forgetPasswordController);
 
-router.post("/auth/forgetpassword", async (request, response) => {
+authRouter.get("/:id", confirmEmailController);
 
-});
-
-router.post("/auth/confirmation/:id", async(request, response) => {
-
-});
-
-router.get("/auth/status", (request, response) => {
-
-});
-
-module.exports = router;
+module.exports = authRouter;
