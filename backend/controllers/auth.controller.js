@@ -64,3 +64,9 @@ const confirmEmailController = async (request, response) => {
   }
 }
 
+module.exports = {
+  loginController,
+  logoutController,
+  forgetPasswordController,
+  confirmEmailController
+};
