@@ -3,29 +3,41 @@ const Product = require('../models/product');
 
 // Add a new product
 const addProduct = async (req, res) => {
-    try {
-        const { images, ...rest } = req.body;
+    const { products } = req.body;
 
-        const productImages = await uploadImages(images.map((img) => img), `charich/${rest.name}`);
-
-        const newProduct = new Product({
-            ...rest,
-            image: productImages,
-        });
-
-        const savedProduct = await newProduct.save();
-        res.status(201).json({ message: 'Product added successfully', data: savedProduct });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+    for(pro of products) {
+        try {
+            const { image, ...rest } = pro;
+            console.log("product", pro)
+    
+            const productImages = await uploadImages(image.map((img) => img), `charich/${rest.name.trim()}`);
+    
+            const newProduct = new Product({
+                ...rest,
+                image: productImages,
+            });
+    
+            const savedProduct = await newProduct.save();
+            // res.status(201).json({ message: 'Product added successfully' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
+    res.status(201).json({ message: 'Product added successfully' });
 };
 
 // Get all products
 const getProducts = async (req, res) => {
+    console.log("getProducts", req.query)
     try {
-        const products = await Product.find();
-        return res.json(products);
+        if (req.query.c !== undefined) {
+        const products = await Product.find({ category: req.query.c }, null, { limit: 10 });
+        return res.status(200).json(products);
+        } else {
+        const products = await Product.find({}, null, { limit: 10 });
+        return res.status(200).json(products);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

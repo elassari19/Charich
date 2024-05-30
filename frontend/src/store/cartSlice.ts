@@ -16,7 +16,7 @@ export const cartSlice = createSlice({
         state.items[index].qty++;
         return ;
       }
-      state.items.push({ ...payload, qty: 1 });
+      state.items.push({ ...payload, qty: state.items[index]?.qty || 1});
       return;
     },
     removeFromCart: (state, { payload }) => {
@@ -53,7 +53,7 @@ export const cartSlice = createSlice({
     setQuantity: (state, { payload }) => {
       const index = state.items.findIndex((item:any) => item.id === payload.id);
       if(index === -1) {
-        cartSlice.caseReducers.addToCart(state, cartSlice.actions.addToCart({ id: payload.id, qty: payload.value }));
+        cartSlice.caseReducers.addToCart(state, cartSlice.actions.addToCart({ ...payload, qty: payload.value }));
         return ;
       };
       state.items[index].qty = payload.value;

@@ -78,7 +78,7 @@ const SearchInput = ({ placeholder }: Props) => {
         popoverContent={<div className='flex flex-col gap-3'>
           {
             Categories.map((category, index) => (
-              <Link key={index} href={`?c=${category.name}`} className='flex flex-col gap-2'>
+              <Link key={index} href={`/?c=${category.name}`} className='flex flex-col gap-2'>
                 {category.name}
               </Link>
             ))

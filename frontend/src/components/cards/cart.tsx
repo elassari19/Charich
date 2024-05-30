@@ -16,14 +16,15 @@ const Cart = ({ className }: Props) => {
     <ReduxContext>
       {(store, dispatch) => {
         const { items } = store.cart
+        console.log("items", items)
         return (
           <div className={cn("my-8 flex flex-col gap-4", className)}>
             {
-              [...items, ...items].map((product: any, index: number) => (
+              items.map((product: any, index: number) => (
                 <div key={index} className='shadow flex justify-between rounded p-2'>
                   <div className='flex gap-4 flex-1'>
                     <Image
-                      src={product.images.src} alt={product.name} loading='lazy'
+                      src={product.image[0].secure_url} alt={product.name} loading='lazy'
                       width={100} height={100}
                       className='w-44 h-44'
                     />
@@ -33,8 +34,8 @@ const Cart = ({ className }: Props) => {
                         <Typography variant='h6' className='font-semibold'>{product.name} name</Typography>
 
                         <div className='flex flex-col gap-2 [&>*]:self-end'>
-                          <Typography variant='h6' className='font-semibold'>${product.price}</Typography>
-                          <Typography variant='span' className='font-semibold'>Delivery ${product.price*0.014}</Typography>
+                          <Typography variant='h6' className='font-semibold'>${parseInt(product.price)/100}</Typography>
+                          <Typography variant='span' className='font-semibold'>Delivery ${(parseInt(product.price)*0.003).toFixed(1)}</Typography>
                           <Typography variant='span' className='font-semibold text-success'>
                             <span className='text-gray-400'>Economy delivery: </span>
                             Est delivery 22Jan - 29Jan

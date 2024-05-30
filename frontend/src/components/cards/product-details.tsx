@@ -13,39 +13,40 @@ type Props = {
 }
 
 const ProductDetails = ({ product }: Props) => {
+  console.log("product", product)
   return (
     <div className='col-span-full lg:col-span-6 flex flex-col gap-y-4 p-4'>
     <Typography variant='h6' className='font-semibold'>{product.name}</Typography>
     <div className='flex items-center gap-6'>
-      <ProductRate ratings={product.ratings} />
-      <Typography variant='span' color='primary' className='font-semibold'>{product.reviews} feedbacks</Typography>
-      <Typography variant='span' color="gray">{product.orders} orders</Typography>
+      <ProductRate ratings={product.ratings || +(Math.random() * 5).toFixed(0)} />
+      <Typography variant='span' color='primary' className='font-semibold'>{product.reviews || 4} feedbacks</Typography>
+      <Typography variant='span' color="gray">{product.orders || Math.random() * 100} orders</Typography>
     </div>
     <div className='grid grid-cols-12 gap-y-3'>
       <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>Condition:</Typography>
       <div className='col-span-full md:col-span-8'>
-        <Typography variant='p' className='font-semibold'>{product.condition}</Typography>
+        {/* <Typography variant='p' className='font-semibold'>{product.condition}</Typography> */}
         <Typography variant='span' color="gray">
           Example of the sellers exlanation, example of the sellers explanation
         </Typography>
       </div>
     </div>
     {
-      [
-        { values: product.color, label: 'Color' },
-        { values: product.size, label: 'Size'},
-      ].map((item) => (
-        <div key={item.label} className='grid grid-cols-12 gap-y-3'>
-          <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>{item.label}:</Typography>
-          <div className='col-span-full md:col-span-8'>
-            <ReuseSelect
-              selectItems={item.values}
-              actionType={item.label.toLowerCase() as 'color' | 'size'}
-              product={product}
-            />
-          </div>
-        </div>
-      ))
+      // [
+      //   { values: product.color, label: 'Color' },
+      //   { values: product.size, label: 'Size'},
+      // ].map((item) => (
+      //   <div key={item.label} className='grid grid-cols-12 gap-y-3'>
+      //     <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>{item.label}:</Typography>
+      //     <div className='col-span-full md:col-span-8'>
+      //       <ReuseSelect
+      //         selectItems={item.values}
+      //         actionType={item.label.toLowerCase() as 'color' | 'size'}
+      //         product={product}
+      //       />
+      //     </div>
+      //   </div>
+      // ))
     }
     <div className='grid grid-cols-12 gap-y-3'>
       <Typography variant='p' color="gray" className='col-span-full md:col-span-4'>Quantity:</Typography>

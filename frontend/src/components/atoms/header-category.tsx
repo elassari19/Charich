@@ -27,14 +27,14 @@ const HeaderCategory = (props: Props) => {
             <Typography variant='h3' className='w-full font-semibold'>{props.category.name}</Typography>
             <div className='grid grid-cols-3 h-[10.5rem] overflow-hidden gap-y-4'>
               {props.category.subCategories.map((sub, index) => (
-                <Link key={index} href={`?c=${sub}`} className='col-span-1 text-sm hover:text-primary hover:font-semibold'>
+                <Link key={index} href={`/?c=${props.category.name}`} className='col-span-1 text-sm hover:text-primary hover:font-semibold'>
                   {sub}
                 </Link>
               ))}
             </div>
             <div>
               <Button size='lg'>
-                <Link href={`?c=${props.category.name}`} className='flex items-center gap-2'>
+                <Link href={`/?c=${props.category.name}`} className='flex items-center gap-2'>
                   See All
                   <GoArrowRight className='w-6 h-6' />
                 </Link>

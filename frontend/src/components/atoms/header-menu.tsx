@@ -25,7 +25,7 @@ const HeaderMenu = (props: Props) => {
             }
             sheetContent={
               <div className='flex flex-col gap-2 items-start'>
-                {category.subCategories.map((sub, i) => (<Link href={`?c=${category.name}&p=${sub}`} key={i}>{sub}</Link>))}
+                {category.subCategories.map((sub, i) => (<Link href={`/?c=${category.name}&p=${sub}`} key={i}>{sub}</Link>))}
               </div>
             }
             side='left'

@@ -38,7 +38,7 @@ const productSchema = new mongoose.Schema({
     },
     subcategory: {
         type: String,
-        required: true
+        required: false
     }
 });
 

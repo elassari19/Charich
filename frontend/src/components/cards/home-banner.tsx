@@ -40,7 +40,7 @@ const HomeBanner = ({ className, variant, ...props }: Props) => {
         <Typography variant='h2' className='font-semibold'>{props.title}</Typography>
         <Typography variant='p'>{props.description}</Typography>
         <Button variant='outline'>
-          <Link href={props.href.toLocaleLowerCase()} className='flex items-center gap-2'>
+          <Link href={props.href} className='flex items-center gap-2'>
             Shop now
             <GoArrowRight className='w-6 h-6' />
           </Link>

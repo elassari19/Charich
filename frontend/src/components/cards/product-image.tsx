@@ -4,7 +4,7 @@ import ImageMagnify from '@/components/cards/product-image-magnify'
 import Image, { StaticImageData } from 'next/image'
 
 interface Props {
-  images: StaticImageData[]
+  images: any[]
 }
 
 const ProductImage = (props: Props) => {
@@ -14,7 +14,7 @@ const ProductImage = (props: Props) => {
       {
         props.images.map((pro, idx) => (
           <TabsContent key={idx} tabIndex={idx} value={idx.toString()} className="mb-4 w-full h-full" >
-            <ImageMagnify src={pro} />
+            <ImageMagnify src={pro.secure_url} />
           </TabsContent>
         ))
       }
@@ -27,7 +27,7 @@ const ProductImage = (props: Props) => {
               className="w-20 h-20 p-1 rounded-lg data-[state=active]:bg-primary/50"
             >
               <Image
-                src={pro} alt="product"
+                src={pro.secure_url} alt="product"
                 width={40} height={40}
                 className='w-full h-full rounded-lg transform transition-transform duration-300 ease-in-out'
                 loading="lazy"

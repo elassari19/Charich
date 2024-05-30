@@ -75,37 +75,37 @@ export const products = {
 
 export const banners = [
   {
-    title: "Sporting and enjoy",
-    description: "Find everything you are looking for, with great deals ",
-    image: bicycle,
-    href: "Sporting Goods"
-  },
-  {
-    title: "It's time for fun",
-    description: "Find everything you are looking for, with great deals ",
-    image: fun,
-    href: "Toys & Hobbies",
-    variant: "warning"
-  },
-  {
     title: "Live in style",
     description: "Find everything you are looking for, with great deals ",
     image: style,
-    href: "Fashion",
+    href: "/?c=Fashion",
     variant: "info"
-  },
-  {
-    title: "Get the best deals",
-    description: "Find everything you are looking for, with great deals ",
-    image: sofa,
-    href: "Home & Garden",
-    variant: "ligth"
   },
   {
     title: "Looking for Electronics?",
     description: "Find everything you are looking for, with great deals ",
     image: electronic,
-    href: "Electronics",
+    href: "/?c=Electronics",
     variant: "purpul"
+  },
+  {
+    title: "Sporting and enjoy",
+    description: "Find everything you are looking for, with great deals ",
+    image: bicycle,
+    href: "/?c=Sporting Goods"
+  },
+  {
+    title: "It's time for fun",
+    description: "Find everything you are looking for, with great deals ",
+    image: fun,
+    href: "/?c=Toys & Hobbies",
+    variant: "warning"
+  },
+  {
+    title: "Get the best deals",
+    description: "Find everything you are looking for, with great deals ",
+    image: sofa,
+    href: "/?c=Home & Garden",
+    variant: "ligth"
   }
 ];
